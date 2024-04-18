@@ -7,6 +7,7 @@ import { IoDesktop } from "react-icons/io5";
 
 const ClientPage = () => {
     const user = useCurrentUser();
+
     return (
         <UserInfo user={user} label="Client Component" icon={<IoDesktop />} />
     );

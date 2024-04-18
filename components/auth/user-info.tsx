@@ -51,13 +51,13 @@ const UserInfo = ({ user, label, icon }: UserInfoProps) => {
                     <p className=" text-sm font-medium">
                         Two Factor Authentication
                     </p>
-                    <p className=" truncate text-xs max-w-[180px] font-mono p-1 rounded-md hover:max-w-full">
+                    <div className=" truncate text-xs max-w-[180px] font-mono p-1 rounded-md hover:max-w-full">
                         {user?.isTwoFactorEnabled ? (
                             <Badge variant="success">ON</Badge>
                         ) : (
                             <Badge variant="destructive">OFF</Badge>
                         )}
-                    </p>
+                    </div>
                 </div>
             </CardContent>
         </Card>

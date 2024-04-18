@@ -46,3 +46,7 @@ export const NewPasswordSchema = z.object({
             "Password should containe a numeric, 1 lowercase and 1 uppercase letter!"
         ),
 });
+
+export const SettingsSchema = z.object({
+    name: z.optional(z.string()),
+});
