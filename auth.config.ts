@@ -29,7 +29,7 @@ export default {
 
                     const passwordsMatch = await bcrypt.compare(
                         password,
-                        user.password
+                        user.password,
                     );
 
                     if (passwordsMatch) return user;

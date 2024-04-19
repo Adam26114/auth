@@ -50,6 +50,9 @@ export const LoginForm = () => {
     const [success, setSuccess] = useState<string | undefined>("");
     const [eyeOpen, setEyeOpen] = useState(false);
 
+    function hundleEyeOpen() {
+        setEyeOpen(!eyeOpen);
+    }
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
@@ -58,9 +61,6 @@ export const LoginForm = () => {
         },
     });
 
-    function hundleEyeOpen() {
-        setEyeOpen(!eyeOpen);
-    }
 
     function onSubmit(data: z.infer<typeof LoginSchema>) {
         setError("");

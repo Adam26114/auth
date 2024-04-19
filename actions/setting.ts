@@ -17,6 +17,13 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
 
     if (!dbUser) return { error: "Unautherized" };
 
+    if (user.isOAuth) {
+        values.email = undefined;
+        values.password = undefined;
+        values.newPassword = undefined;
+        values.isTwoFactorEnabled = undefined;
+    }
+
     await db.user.update({
         where: {
             id: dbUser.id,
@@ -26,5 +33,5 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
         },
     });
 
-    return { success :"Setting Updated"}
+    return { success: "Setting Updated" };
 };

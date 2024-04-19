@@ -15,6 +15,7 @@ export const {
     signIn,
     signOut,
 } = NextAuth({
+    debug: true,
     pages: {
         signIn: "/auth/login",
         error: "/auth/error",
@@ -84,10 +85,10 @@ export const {
 
             const existingAccount = await getAccountByUserId(existingUser.id);
 
-            token.is0Auth = !!existingAccount;
             token.name = existingUser.name;
             token.email = existingUser.email;
             token.role = existingUser.role;
+            token.is0Auth = !!existingAccount;
             token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 
             return token;
