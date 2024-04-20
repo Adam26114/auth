@@ -1,7 +1,5 @@
 import NextAuth from "next-auth";
-
 import { PrismaAdapter } from "@auth/prisma-adapter";
-
 import { getUserById } from "@/data/user";
 import { db } from "@/lib/db";
 import authConfig from "./auth.config";
@@ -41,7 +39,6 @@ export const {
             if (existingUser.isTwoFactorEnabled) {
                 const twoFactorConfirmation =
                     await getTwoFactorCongimationByUserId(existingUser.id);
-
                 if (!twoFactorConfirmation) return false;
 
                 await db.twoFactorConfirmation.delete({
@@ -57,30 +54,26 @@ export const {
             if (token.sub && session.user) {
                 session.user.id = token.sub;
             }
-
             if (token.role && session.user) {
                 session.user.role = token.role as UserRole;
             }
-
             if (session.user) {
                 session.user.isTwoFactorEnabled =
                     token.isTwoFactorEnabled as boolean;
             }
-
             if (session.user) {
                 session.user.name = token.name as string;
                 session.user.email = token.email as string;
                 session.user.isOAuth = token.isOAuth as boolean;
             }
 
+            // console.log("Session:", session);
             return session;
         },
-
         async jwt({ token }) {
             if (!token.sub) return token;
 
             const existingUser = await getUserById(token.sub);
-
             if (!existingUser) return token;
 
             const existingAccount = await getAccountByUserId(existingUser.id);
@@ -88,9 +81,10 @@ export const {
             token.name = existingUser.name;
             token.email = existingUser.email;
             token.role = existingUser.role;
-            token.is0Auth = !!existingAccount;
             token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
+            token.isOAuth = !!existingAccount; // Set isOAuth based on the presence of a linked account
 
+            // console.log("Token:", token);
             return token;
         },
     },
