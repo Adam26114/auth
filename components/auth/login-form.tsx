@@ -65,7 +65,7 @@ export const LoginForm = () => {
       setSuccess("");
 
       startTransition(() => {
-         login(data, callbackUrl)
+         login(data, callbackUrl || undefined)
             .then((data) => {
                if (data?.error) {
                   form.reset();
