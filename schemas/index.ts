@@ -3,13 +3,7 @@ import * as z from "zod";
 
 export const LoginSchema = z.object({
    email: z.string().min(1, "Email is required").email(),
-   password: z
-      .string()
-      .min(1, "Password is required")
-      .regex(
-         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/,
-         "Password should containe a numeric, 1 lowercase and 1 uppercase letter!",
-      ),
+   password: z.string().min(1, "Password is required"),
    code: z.optional(z.string()),
 });
 
