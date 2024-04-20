@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import LoadingProvider from "./context/LoadingProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const poppins = Poppins({
    subsets: ["latin"],
@@ -31,6 +32,7 @@ export default async function RootLayout({
             <body className={poppins.className}>
                <LoadingProvider>
                   {children}
+                  <SpeedInsights />
                   <Toaster />
                </LoadingProvider>
             </body>
