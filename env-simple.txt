@@ -1,0 +1,22 @@
+
+
+DATABASE_URL=
+# https://supabase.com/
+
+
+AUTH_SECRET=
+# npx auth secret 
+
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+# https://github.com/settings/developers
+
+GOOLGE_CLIENT_ID=
+GOOLGE_CLIENT_SECRET=
+# https://console.cloud.google.com/
+
+
+RESEND_API_KEY=
+# https://resend.com
+
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
